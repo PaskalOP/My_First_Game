@@ -4,17 +4,23 @@ using UnityEngine;
 
 namespace firstGame
 {
-    public class shild : MonoBehaviour
+    public class shild : MonoBehaviour, ITakeDamage
     {
-        private float _durability;
+       [SerializeField] private float _durability=10f;
 
-        // Start is called before the first frame update
-        public void Init(float _durability)
+        
+        public void Init(float durability)
         {
-            Destroy(gameObject, 3f);
+            _durability = durability;
+            Destroy(gameObject, 10f);
         }
-
-
+        public void Hit(float damage)
+        { 
+            _durability -= damage;
+            if (_durability <= 0)
+                Destroy(gameObject);
+        }
+        
     }
 }
 

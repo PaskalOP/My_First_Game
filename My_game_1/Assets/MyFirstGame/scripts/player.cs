@@ -8,26 +8,25 @@ namespace firstGame
     public class player : MonoBehaviour
     {
         public GameObject shildPrefab;
+        public GameObject friend;
         public Transform shildPoint;
         private bool _isSpawnShild;
         private int level = 1;
+        [SerializeField]private int countOfFriend = 0;
         private Vector3 _direction;
-       // private Vector3 jump;
-        
+        //[SerializeField] private int HP = 10;
+
+
         public float speed = 2f;
+        public float _speedRotate = 200;
         private bool _isSprint;
-        
-        private void Awake()
-        {
-            
-        }
-       
+
         void Start()
         {
-            
+
         }
 
-        
+
         void Update()
         {
             if (Input.GetButtonDown("shild hiro"))
@@ -37,49 +36,49 @@ namespace firstGame
 
             _direction.x = Input.GetAxis("Horizontal");
 
-            // jump.y = Input.GetAxis("Jump");
+
 
             _isSprint = Input.GetButton("Sprint");
 
-            
-               
-            
+
+
+
         }
-        
+
         private void SpawnShildPoint()
         {
             var shildOb = Instantiate(shildPrefab, shildPoint.position, shildPoint.rotation);
-           var shild = shildOb.GetComponent<shild>();
-            shild.Init(10* level);
+            var shild = shildOb.GetComponent<shild>();
+            shild.Init(10 * level);
             shild.transform.SetParent(shildPoint);
         }
 
         private void FixedUpdate()
         {
-            if (_isSpawnShild) 
+            if (_isSpawnShild)
             {
                 _isSpawnShild = false;
                 SpawnShildPoint();
             }
             Move(Time.fixedDeltaTime);
-            //JumpPlayer(Time.fixedDeltaTime);
-            //JumpPlayer();
 
+            transform.Rotate(new Vector3(0, Input.GetAxis("Horizontal") * _speedRotate * Time.fixedDeltaTime, 0));
         }
         private void Move(float delta)
         {
-            transform.position += _direction * (_isSprint? speed*3: speed) *delta;
-            
+            var transfDir = transform.TransformDirection(_direction.normalized);
+            transform.position += transfDir * (_isSprint ? speed * 3 : speed) * delta;
+
         }
-
-       /* private void JumpPlayer()
+       
+        private void OnTriggerEnter(Collider other)
         {
-            
-            transform.position += jump * 10;
-            transform.position -= jump * 10;
-            
+            if (other.CompareTag("Frend"))
+            {
+                countOfFriend++;
+            }
 
-        }*/
-    }
+        }
+    }  
 }
 
