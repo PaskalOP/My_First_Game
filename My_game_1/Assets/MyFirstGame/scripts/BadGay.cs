@@ -10,8 +10,9 @@ namespace firstGame
         [SerializeField] private GameObject bulletPref;
         [SerializeField] private Transform PointOfBullet;
         [SerializeField] private float _speedRotate;
-        //private Vector3 _directionBG;
-        //public float speed = 2f;
+        [SerializeField] private float _coolDown;
+        [SerializeField] private bool _isFire;
+       
 
 
         void Start()
@@ -23,11 +24,14 @@ namespace firstGame
 
         void Update()
         {
-            if (Vector3.Distance(transform.position, _player.transform.position) < 5)
-            {
-                //if (Input.GetButton("Fire"))
-                    Fire();
-            }
+            Ray ray01 = new Ray(PointOfBullet.position, transform.forward);
+            if(Physics.Raycast(ray01,out RaycastHit hit,5))
+
+                if (hit.collider.CompareTag("Player"))
+                {
+                    if (_isFire)
+                        Fire();
+                }
 
           var direcnion = _player.transform.position - transform.position;
             var stepRotate = Vector3.RotateTowards(transform.forward, direcnion, _speedRotate * Time.fixedDeltaTime, 0f);
@@ -40,8 +44,14 @@ namespace firstGame
                 var bulletOb = Instantiate(bulletPref, PointOfBullet.position, PointOfBullet.rotation);
                 var bullet = bulletOb.GetComponent<Bullet>();
                 bullet.Init(_player.transform, 10, 2f);
+            _isFire = false;
+            Invoke(nameof(Reloading), _coolDown);
 
-               
+
+        }
+        void Reloading()
+        {
+            _isFire = true;
         }
        
     }

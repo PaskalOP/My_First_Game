@@ -140,4 +140,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 8051575147087252251}
-  badGay: {fileID: 642407923695678224, guid: 3d3edd42218704f98a27d2457dfb0b31, type: 3}
+  badGay: {fileID: 7456426423747797970, guid: 4612877bcc9634074b8c1925de0bfff5, type: 3}

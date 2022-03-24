@@ -19,6 +19,7 @@ namespace firstGame
 
         public float speed = 2f;
         public float _speedRotate = 200;
+        public float _jumpForce = 10;
         private bool _isSprint;
 
         void Start()
@@ -40,7 +41,8 @@ namespace firstGame
 
             _isSprint = Input.GetButton("Sprint");
 
-
+           if(Input.GetButtonDown("Jump"))
+                GetComponent<Rigidbody>().AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
 
 
         }

@@ -1081,10 +1081,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12646f8041f6c4a389e7a5a2acae49be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 4149032983630204288, guid: e0a7881e94df04c2fbd0870f00e3e43f, type: 3}
+  _player: {fileID: 1816394590236434545, guid: 0057985af7f20474eb5a0875743fd8f6, type: 3}
   bulletPref: {fileID: 9147546135176038257, guid: 287a5d605ad824bcfb9672a96fe5694b, type: 3}
   PointOfBullet: {fileID: 3160587993547316759}
   _speedRotate: 10
+  _coolDown: 0
+  _isFire: 0
 --- !u!1 &7508243166896797161
 GameObject:
   m_ObjectHideFlags: 0
