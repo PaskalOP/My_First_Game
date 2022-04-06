@@ -11,7 +11,7 @@ namespace firstGame
 
         private void OnTriggerEnter(Collider other)
         {
-           if (other.CompareTag("Player"))
+           if (other.CompareTag("Player")|| other.CompareTag("BadGay"))
             {
                 _rotatePoint.Rotate(Vector3.down, 90);
             }
@@ -19,7 +19,7 @@ namespace firstGame
         }
         private void OnTriggerExit (Collider other)
         {
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("Player") || other.CompareTag("BadGay"))
             {
                 _rotatePoint.Rotate(Vector3.up, 90);
             }

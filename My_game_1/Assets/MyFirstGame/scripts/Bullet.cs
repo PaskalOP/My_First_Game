@@ -7,7 +7,7 @@ namespace firstGame
     public class Bullet : MonoBehaviour
     {
         private Transform _target;
-        [SerializeField] private float _speed=3;
+        [SerializeField] private float _speed;
         [SerializeField] private float _damage=3;
         
 
@@ -21,7 +21,7 @@ namespace firstGame
         void FixedUpdate()
         {
             //transform.position = Vector3.MoveTowards(transform.position, _target.position, _speed);
-            transform.position += transform.forward * _speed * Time.fixedDeltaTime;
+           transform.position += transform.forward * _speed * Time.fixedDeltaTime;
         }
         private void OnCollisionEnter(Collision collision)
         {

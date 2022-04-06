@@ -19,7 +19,7 @@ namespace firstGame
 
         public float speed = 2f;
         public float _speedRotate = 200;
-        public float _jumpForce = 10;
+        public float _jumpForce = 5;
         private bool _isSprint;
 
         void Start()
