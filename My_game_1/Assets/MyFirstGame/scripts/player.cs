@@ -9,10 +9,11 @@ namespace firstGame
     {
         public GameObject shildPrefab;
         public GameObject friend;
+        public GameObject win;
         public Transform shildPoint;
         private bool _isSpawnShild;
         private int level = 1;
-        [SerializeField]private int countOfFriend = 0;
+        private int countOfFriend = 0;
         private Vector3 _direction;
         //[SerializeField] private int HP = 10;
 
@@ -21,6 +22,7 @@ namespace firstGame
         public float _speedRotate = 200;
         public float _jumpForce = 5;
         private bool _isSprint;
+        
 
         void Start()
         {
@@ -44,7 +46,12 @@ namespace firstGame
            if(Input.GetButtonDown("Jump"))
                 GetComponent<Rigidbody>().AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
 
-
+            if (countOfFriend == 5)
+            {
+                Instantiate(win);//конец игры/уровень пройден
+            }
+               
+                
         }
 
         private void SpawnShildPoint()
