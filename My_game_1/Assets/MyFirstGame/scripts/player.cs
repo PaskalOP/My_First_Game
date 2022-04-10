@@ -16,17 +16,17 @@ namespace firstGame
         private int countOfFriend = 0;
         private Vector3 _direction;
         //[SerializeField] private int HP = 10;
+        private Rigidbody _rigidb;
 
-
-        public float speed = 2f;
-        public float _speedRotate = 200;
-        public float _jumpForce = 5;
+        public float speed;
+        public float _speedRotate;
+        public float _jumpForce;
         private bool _isSprint;
         
 
-        void Start()
+        void Awake ()
         {
-
+            _rigidb = GetComponent<Rigidbody>();
         }
 
 
@@ -44,11 +44,12 @@ namespace firstGame
             _isSprint = Input.GetButton("Sprint");
 
            if(Input.GetButtonDown("Jump"))
-                GetComponent<Rigidbody>().AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+                _rigidb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
 
             if (countOfFriend == 5)
             {
-                Instantiate(win);//конец игры/уровень пройден
+                Instantiate(win);
+                Time.timeScale = 0f;
             }
                
                 
